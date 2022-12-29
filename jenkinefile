@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages{
+        stage('git clone'){
+            steps{
+                git branch: 'main', url: 'https://github.com/krishnapuppala97/my-tf-iac-aws-repo.git'
+            }
+        }
+        stage('terraform init'){
+            steps{
+                sh 'terraform init'
+            }
+        }
+        stage('terraform apply'){
+        steps{
+            sh 'terraform ${action} -auto-approve'
+        }
+       }
+        
+    }
+}
